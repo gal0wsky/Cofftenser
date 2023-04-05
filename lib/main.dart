@@ -1,20 +1,20 @@
+import 'package:cofftenser/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const AppWidget());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'Cofftenser',
+        home: const HomePage(),
+        theme: ThemeData(
+          fontFamily: 'Heebo'
         ),
       ),
     );
