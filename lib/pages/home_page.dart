@@ -1,4 +1,6 @@
+import 'package:cofftenser/pages/intensity_calculator_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -49,10 +51,10 @@ class HomePage extends StatelessWidget {
                   const Text(
                     "Cofftenser",
                     style: TextStyle(
-                        fontSize: 74,
-                        fontFamily: 'Caveat',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                      fontSize: 74,
+                      fontFamily: 'Caveat',
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 30),
@@ -61,7 +63,6 @@ class HomePage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -81,7 +82,7 @@ class HomePage extends StatelessWidget {
                               ),
                         ),
                         onPressed: () {
-                          // TODO: go to calculator page
+                          Get.to(const IntensityCalculatorPage());
                         },
                         child: const Text(
                           "Calculate",
