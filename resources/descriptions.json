@@ -1,0 +1,26 @@
+[
+    {
+        "intensityName": "reallyLight",
+        "content": "Those proportions won't give you great taste and intensity. We highly suggest to add more coffee or water, so you can really enjoy your drink."
+    },
+    {
+        "intensityName": "light",
+        "content": "This type of coffee might not give you a kick. It's great for meetings with friends and family. Perfect to just enjoy the time."
+    },
+    {
+        "intensityName": "regular",
+        "content": "This is regular coffee. Great for the start of every morning. Perfect for the little boost while working or studying."
+    },
+    {
+        "intensityName": "strong",
+        "content": "This type of coffee is really intense. It's almost like an espresso. Condensed shot gives you the energy for the day."
+    },
+    {
+        "intensityName": "reallyStrong",
+        "content": "Espresso type of coffee. Intense taste. Gives a good kick. Not recomended to begginers."
+    },
+    {
+        "intensityName": "dangerous",
+        "content": "Those proportions may be DANGEROUS for you. DO NOT drink this type of coffee."
+    }
+]

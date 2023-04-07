@@ -1,6 +1,10 @@
-import 'package:get/state_manager.dart';
+import 'package:cofftenser/controllers/coffee_description_controller.dart';
+import 'package:cofftenser/models/intensity.dart';
+import 'package:get/get.dart';
 
 class CoffeeIntensityController extends GetxController {
+  final Rx<Intensity> _intensity = Intensity.regular.obs;
+
   final coffee = 6.0.obs;
   final minCoffee = 6.0.obs;
   final maxCoffee = 30.0.obs;
@@ -9,9 +13,18 @@ class CoffeeIntensityController extends GetxController {
   final minWater = 30.0.obs;
   final maxWater = 300.0.obs;
 
-  final intensityCategory = "Really strong".obs;
-  final intensityDescription = "This type of coffee is really intense. It's almost like an espresso. Condenssed shot gives you strike for the day".obs;
-  final picture = 'assets/reallyStrongCoffee.png'.obs;
+  final intensityCategory = "Regular".obs;
+  final intensityDescription = "This is regular coffee. Great for the start of every morning. Perfect for the little boost while working or studying.".obs;
+  final picture = 'assets/regular.png'.obs;
+
+  CoffeeIntensityController() {
+    intensityCategory(Intensity.regular.name.capitalize);
+
+    final descriptionContent = CoffeeDescriptionController.descriptions[_intensity.value.index].content;
+    intensityDescription(descriptionContent);
+
+    picture('assets/${_intensity.value.name}.png');
+  }
 
   void changeCoffeeAmount(double newCoffeeAmount) {
     coffee(newCoffeeAmount);
@@ -37,7 +50,74 @@ class CoffeeIntensityController extends GetxController {
     maxWater(newAmount);
   }
 
-  void calculateIntensity() {
-    // TODO: Calculate new coffee intensity, change category, desc & image
+  void updateInformation() {
+    _intensity(_calculateIntensity());
+
+    _updatePicturePath();
+    _updateCategory();
+    _updateDescription();
+  }
+
+  Intensity _calculateIntensity() {
+    final coffeeToWaterRatio = coffee.value / water.value;
+    Intensity intensity = Intensity.regular;
+    
+    if (coffeeToWaterRatio <= 1/19) {
+      intensity = Intensity.superLight;
+    }
+    else if (coffeeToWaterRatio <=  1/18) {
+      intensity = Intensity.light;
+    }
+    else if (coffeeToWaterRatio <= 1/16) {
+      intensity = Intensity.regular;
+    }
+    else if (coffeeToWaterRatio <= 1/15) {
+      intensity = Intensity.strong;
+    }
+    else if (coffeeToWaterRatio <= 1/14) {
+      intensity = Intensity.reallyStrong;
+    }
+    else {
+      intensity = Intensity.dangerous;
+    }
+
+    return intensity;
+  }
+
+  void _updatePicturePath() {
+    picture('assets/${_intensity.value.name}.png');
+  }
+
+  void _updateCategory() {
+    String newCategory = "Regular";
+
+    switch (_intensity.value) {
+      case Intensity.superLight:
+        newCategory = "Super light";
+        break;
+      case Intensity.light:
+        newCategory = "Light";
+        break;
+      case Intensity.regular:
+        newCategory = "Regular";
+        break;
+      case Intensity.strong:
+        newCategory = "Strong";
+        break;
+      case Intensity.reallyStrong:
+        newCategory = "Really strong";
+        break;
+      case Intensity.dangerous:
+        newCategory = "Dangerous";
+        break;
+    }
+
+    intensityCategory(newCategory);
+  }
+
+  void _updateDescription() {
+    String newDescription = CoffeeDescriptionController.descriptions[_intensity.value.index].content;
+
+    intensityDescription(newDescription);
   }
 }

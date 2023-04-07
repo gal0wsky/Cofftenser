@@ -17,7 +17,11 @@ class IntensityCalculatorPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Image depending of intensity
-              Image(image: AssetImage(controller.picture.string)),
+              Image(image: AssetImage(controller.picture.string),
+                height: MediaQuery.of(context).size.height * 0.5,
+                // width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fitHeight,
+              ),
               // How intense coffee is
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
@@ -44,7 +48,7 @@ class IntensityCalculatorPage extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.symmetric(vertical: 60),
+                margin: const EdgeInsets.only(top: 60),
                 child: Column(
                   children: [
                     // How much coffee user wants
@@ -71,7 +75,7 @@ class IntensityCalculatorPage extends StatelessWidget {
                               activeColor: const Color.fromARGB(255, 148, 42, 0),
                               onChanged: (value) {
                                 controller.changeCoffeeAmount(value);
-                                controller.calculateIntensity();
+                                controller.updateInformation();
                               },
                             ),
                           )
@@ -80,7 +84,7 @@ class IntensityCalculatorPage extends StatelessWidget {
                     ),
                     // How much water user wants
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      margin: const EdgeInsets.only(bottom: 10),
                       child: Column(
                         children: [
                           SizedBox(
@@ -101,7 +105,7 @@ class IntensityCalculatorPage extends StatelessWidget {
                               activeColor: const Color.fromARGB(255, 148, 42, 0),
                               onChanged: (value) {
                                 controller.changeWaterAmount(value);
-                                controller.calculateIntensity();
+                                controller.updateInformation();
                               },
                             ),
                           )

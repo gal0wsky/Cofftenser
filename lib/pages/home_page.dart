@@ -1,3 +1,4 @@
+import 'package:cofftenser/controllers/coffee_description_controller.dart';
 import 'package:cofftenser/pages/intensity_calculator_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -81,8 +82,27 @@ class HomePage extends StatelessWidget {
                                 )
                               ),
                         ),
-                        onPressed: () {
-                          Get.to(const IntensityCalculatorPage());
+                        onPressed: () async {
+                          final areDescriptionsLoaded = await CoffeeDescriptionController.loadDescriptionsFromFile();
+                          if (areDescriptionsLoaded) {
+                            Get.to(const IntensityCalculatorPage());
+                          }
+                          else {
+                            Get.defaultDialog(
+                              title: "Something went wrong",
+                              middleText: "We can't open the intensity calculator. Please restart the app and try again.",
+                              backgroundColor: const Color.fromARGB(255, 38, 16, 0),
+                              titleStyle: const TextStyle(
+                                fontFamily: "Heebo",
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold
+                              ),
+                              middleTextStyle: const TextStyle(
+                                fontFamily: "Heebo",
+                                fontSize: 20
+                              ),
+                            );
+                          }
                         },
                         child: const Text(
                           "Calculate",
