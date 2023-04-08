@@ -8,8 +8,8 @@ class CoffeeDescriptionController extends GetxController {
 
   CoffeeDescriptionController._();
 
-  static Future<bool> loadDescriptionsFromFile() async {
-    final String descriptionsJson = await rootBundle.loadString('resources/descriptions.json');
+  static Future<bool> loadDescriptionsFromFile(AssetBundle assetBundle) async {
+    final String descriptionsJson = await assetBundle.loadString('resources/descriptions.json');
 
     if (descriptionsJson.isEmpty) {
       return false;

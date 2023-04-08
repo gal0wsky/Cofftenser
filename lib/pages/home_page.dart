@@ -1,6 +1,7 @@
 import 'package:cofftenser/controllers/coffee_description_controller.dart';
 import 'package:cofftenser/pages/intensity_calculator_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
@@ -83,7 +84,8 @@ class HomePage extends StatelessWidget {
                               ),
                         ),
                         onPressed: () async {
-                          final areDescriptionsLoaded = await CoffeeDescriptionController.loadDescriptionsFromFile();
+                          final areDescriptionsLoaded = 
+                            await CoffeeDescriptionController.loadDescriptionsFromFile(rootBundle);
                           if (areDescriptionsLoaded) {
                             Get.to(const IntensityCalculatorPage());
                           }
