@@ -36,15 +36,19 @@ class IntensityCalculatorPage extends StatelessWidget {
               // Short description of intensity
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
-                child: Flexible(
-                  child: Text(controller.intensityDescription.string,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontFamily: "Heebo",
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(controller.intensityDescription.string,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontFamily: "Heebo",
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal
+                        ),
+                      )
                     ),
-                  )
+                  ],
                 ),
               ),
               Container(
